@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommand>$(MSMPI_BIN)\mpiexec</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>-n 4 "$(TargetPath)"</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArgumentsHistory>-n 4 "C:\Users\adria\Desktop\GIThubClones\ProiectAPD_TextProcessing\ProiectAPD_TextProcessing\VariantaParalela2\x64\Debug\VariantaParalela2.exe"|</LocalDebuggerCommandArgumentsHistory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerCommand>$(MSMPI_BIN)\mpiexec</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>-n 4 "$(TargetPath)"</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArgumentsHistory>-n 4 "C:\Users\adria\Desktop\GIThubClones\ProiectAPD_TextProcessing\ProiectAPD_TextProcessing\VariantaParalela2\x64\Release\VariantaParalela2.exe"|</LocalDebuggerCommandArgumentsHistory>
+  </PropertyGroup>
+</Project>
