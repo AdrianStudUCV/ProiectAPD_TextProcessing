@@ -35,34 +35,39 @@ string normalize(string word) {
 // Functia pe care o va rula fiecare thread
 void processChunk(string fileName, long start, long end, unordered_map<string, int>& globalMap) {
     ifstream file(fileName, ios::binary);
-    file.seekg(start);
 
-    // Daca nu suntem la inceputul fisierului, sarim peste fragmentul de cuvant curent
-    // pana la primul spatiu, deoarece thread-ul anterior se va ocupa de el
-    if (start != 0) {
-        string skip;
-        file >> skip;
-    }
+    // Alocam un buffer generos pentru a citi toata portiunea odata in RAM
+    long size = end - start;
+    string buffer(size, ' ');
+    file.seekg(start);
+    file.read(&buffer[0], size);
+    file.close();
 
     unordered_map<string, int> localMap;
-    string rawWord;
+    string word = "";
 
-    while (file.tellg() < end && file >> rawWord) {
-        string cleanWord = normalize(rawWord);
-        if (!cleanWord.empty() && stopWords.find(cleanWord) == stopWords.end()) {
-            localMap[cleanWord]++;
+    // Procesam buffer-ul din memorie (mult mai rapid decat de pe disc)
+    for (char c : buffer) {
+        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+            word += (char)tolower(c);
+        }
+        else if (!word.empty()) {
+            if (stopWords.find(word) == stopWords.end()) {
+                localMap[word]++;
+            }
+            word = "";
         }
     }
 
-    // Faza de Reduce: Combinam localMap in globalMap folosind un mutex
+    // Faza de Reduce 
     lock_guard<mutex> lock(mtx);
-    for (auto const& [word, count] : localMap) {
-        globalMap[word] += count;
+    for (auto const& [w, count] : localMap) {
+        globalMap[w] += count;
     }
 }
 
 int main() {
-    string fileName = "D:\\Notepad++\\SAVES\\test_1000mb.txt";
+    string fileName = "D:\\Notepad++\\SAVES\\test_50mb.txt";
     int N = 10;
     unsigned int numThreads = thread::hardware_concurrency(); // Detecteaza cate nuclee are procesorul tau
 
