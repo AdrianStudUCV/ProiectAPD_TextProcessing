@@ -1,5 +1,5 @@
 // VariantaSecventiala.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+//m
 
 #include <iostream>
 #include <fstream>
