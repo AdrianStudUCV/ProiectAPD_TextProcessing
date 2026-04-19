@@ -1,0 +1,9 @@
+﻿  VariantaParalela1.cpp
+D:\VS C++\ProiectAPD_TextProcessing\VariantaParalela1\VariantaParalela1.cpp(75,19): warning C4244: 'initializing': conversion from 'std::streamoff' to 'long', possible loss of data
+D:\VS C++\ProiectAPD_TextProcessing\VariantaParalela1\VariantaParalela1.cpp(86,23): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  1 of 725 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  VariantaParalela1.vcxproj -> D:\VS C++\ProiectAPD_TextProcessing\VariantaParalela1\x64\Release\VariantaParalela1.exe
